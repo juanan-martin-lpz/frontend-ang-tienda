@@ -1,0 +1,57 @@
+    <!-- Productos -->
+    <div class="section">
+
+            <!-- Card  -->
+            <div id="app" class="row columns is-multiline">
+                <div class="column is-3"  *ngFor="let p of productos">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-16by9">
+                                <img src="https://picsum.photos/300/200?random={{p._id}}" alt="Image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-content">
+                                    <p class="title is-4 no-padding">{{p.nombre}}</p>
+                                    <p class="is-6">{{p.descripcion}}</p>
+
+                                    <p class="subtitle is-6">Usuario</p>
+                                </div>
+                            </div>
+                            <p><strong>{{ p.precio }}</strong></p>
+
+                            <div class="columns content">
+                                <div class="column">
+                                    <button (click)="aniadirProducto(p)" >Comprar ya!!</button>
+                                </div>
+
+                                <div class="column"  *ngIf="p.cantidad > 0">
+                                    <div class="field has-addons">
+                                        <div class="control">
+                                            <a class="button is-info">
+                                                <svg width="0.5em" height="0.5em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="control">
+                                            <p>{{ p.cantidad }}</p>
+                                        </div>
+                                        <div class="control">
+                                            <a class="button is-info">
+                                                <svg width="0.5em" height="0.5em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+        <!--  End Card -->

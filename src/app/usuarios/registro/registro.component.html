@@ -1,0 +1,83 @@
+<br/>
+<br/>
+<section class="columns">
+    <div class="column card  is-half is-offset-one-quarter">
+        <div class="card-header">
+
+            <h2 class="card-header-title is-center">Registro</h2>
+
+        </div>
+
+        <div class="card-content">
+
+            <div class="field">
+                <label class="label">Nombre</label>
+                <div class="control">
+                    <input id="login" type="text" [(ngModel)]="usuario.nombre" class="input is-primary"/>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Apellidos</label>
+                <div class="control">
+                    <input class="input is-primary" id="pw" type="text"  [(ngModel)]="usuario.apellidos"/>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Login</label>
+                <div class="control">
+                    <input id="pw" type="text"  [(ngModel)]="usuario.login" class="input is-primary"/>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Pw</label>
+                <div class="control">
+                    <input id="pw" type="text"  [(ngModel)]="usuario.password" class="input is-primary"/>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Confirmar Pw</label>
+                <div class="control">
+                    <input id="pw" type="text"  [(ngModel)]="password" class="input is-primary"/>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input id="pw" type="text"  [(ngModel)]="usuario.email" class="input is-primary"/>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Idioma</label>
+                <div class="select">
+                    <select [(ngModel)]="usuario.idioma">
+                        <option>ES</option>
+                        <option>EN</option>
+                    </select>
+                </div>
+            </div>
+
+            <div *ngIf="mensaje.length > 0" class="notification is-danger">
+                <button class="delete"></button>
+                <h6 *ngFor="let me of mensaje">{{me}}</h6>
+            </div>
+        </div> <!--formulario-->
+
+        <div class="columns">
+
+            <div class="column is-1 is-offset-5">
+                <input type="button" (click)="siguiente()" class="button is-primary" style="width:110px" value="Siguiente" />
+            </div>
+
+            <div class="column is-1 is-offset-1">
+                <input type="button" routerLink="/" class="button is-danger" style="width:110px" value="Cancelar" />
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Tienda"
+    }
+  },
+  "defaultProject": "Tienda",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

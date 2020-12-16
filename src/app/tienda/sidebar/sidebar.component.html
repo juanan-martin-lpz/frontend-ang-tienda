@@ -1,0 +1,73 @@
+    <!-- Sidebar -->
+        <div class="section">
+
+            <div class="columns">
+                <div class="column is is-three-quarters">
+                    <p class="is-size-3">Cesta</p>
+                </div>
+                <div class="column" *ngIf="items.length != 0 && usuario != null">
+                    <button (click)="guardarCesta()"  class="button is-link">Guardar</button>
+                </div>
+            </div>
+            <p class="is-size-5" *ngIf="items.length == 0">No hay articulos en su cesta</p>
+
+            <p class="is-size-5" *ngIf="items.length != 0">{{ total_cesta }}</p>
+
+            <!-- Card Cesta  -->
+            <div id="app" class="row is-multiline" *ngFor="let p of items">
+
+                <div class="card is-full m-2">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-96x96">
+                                    <img src="https://picsum.photos/300/200?random={{p.articulo._id}}" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                    <p class="title is-4 no-padding">{{p.articulo.referencia}}</p>
+                                    <p class="is-6">{{p.articulo.nombre}}</p>
+
+                            </div>
+                        </div>
+                        <div class="content columns">
+                            <div class="column">
+                                <p><strong>{{ p.total_linea }}</strong></p>
+                            </div>
+                            <div class="column">
+                                <div class="field has-addons">
+                                    <div class="control">
+                                        <a class="button is-info" (click)="incrementar(p)">
+                                            <svg width="0.5em" height="0.5em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="control">
+                                        <p class="m-2">{{ p.cantidad }}</p>
+                                    </div>
+                                    <div class="control">
+                                        <a class="button is-info" (click)="decrementar(p)">
+                                            <svg width="0.5em" height="0.5em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="control">
+                                    <a class="button is-danger" (click)="quitar(p)">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-dash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                            <path fill-rule="evenodd" d="M6 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                                        </svg>                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--  End Card -->
+        </div>

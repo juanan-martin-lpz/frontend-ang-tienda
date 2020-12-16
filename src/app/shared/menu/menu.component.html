@@ -1,0 +1,45 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+
+  <!-- Aqui imagen del usuario junto con su nombre y acceso al perfil -->
+
+  <div class="navbar-brand">
+      <a class="navbar-item button m-2 has-background-dark has-text-light" (click)="profile()">
+        <span class="icon is-medium">
+            <i class="fas fa-lg fa-home"></i>
+        </span>
+        <p *ngIf="usuario == null">No has entrado<p>
+        <p *ngIf="usuario != null">{{usuario.nombre}}<p>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a *ngIf="usuario != null && cesta.length > 0"  class="navbar-item">
+        Tu Cesta
+      </a>
+
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+            <a *ngIf="usuario == null" class="button is-primary" routerLink="/usuarios/register">
+            <strong>Registrarse</strong>
+          </a>
+          <a *ngIf="usuario == null"  class="button is-light" routerLink="/usuarios/login">
+              Entrar
+          </a>
+          <a *ngIf="usuario != null"  class="button is-danger" routerLink="/usuarios/login">
+              Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

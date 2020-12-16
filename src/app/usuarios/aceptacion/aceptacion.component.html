@@ -1,0 +1,31 @@
+<p></p>
+<div class="columns is-flex">
+        <div class="column align-self-center is-three-quarters">
+                <div class="align-self-center">
+                    <h2>Aceptación de condiciones</h2>
+                </div>
+
+                <p class="justify-content">
+                  Lorem fistrum nostrud tiene musho peligro ullamco a gramenawer nostrud voluptate te voy a borrar el cerito elit me cago en tus muelas reprehenderit. Llevame al sircoo reprehenderit hasta luego Lucas incididunt commodo jarl está la cosa muy malar officia. No te digo trigo por no llamarte Rodrigor quis incididunt labore laboris se calle ustée tempor magna. Elit torpedo tempor caballo blanco caballo negroorl te va a hasé pupitaa consequat hasta luego Lucas.
+                </p>
+
+                <p class="justify-content">
+                  Qui torpedo et ese pedazo de apetecan ullamco sed sit amet magna. Tempor nisi cillum caballo blanco caballo negroorl. De la pradera tiene musho peligro consequat elit veniam ex labore ese pedazo de cillum. Voluptate ese que llega consectetur incididunt por la gloria de mi madre caballo blanco caballo negroorl labore labore. A peich exercitation llevame al sircoo consequat tempor. Sexuarl reprehenderit amatomaa magna magna quis a peich apetecan ahorarr.
+                </p>
+
+                <p class="justify-contet">
+                  A gramenawer sit amet jarl aliqua officia commodo condemor no puedor va usté muy cargadoo ese que llega. Te voy a borrar el cerito veniam aliquip a peich commodo nostrud benemeritaar ahorarr no puedor pupita aute. Caballo blanco caballo negroorl consectetur mamaar hasta luego Lucas te voy a borrar el cerito quietooor. Dolor te va a hasé pupitaa quietooor sed veniam ese pedazo de ut la caidita diodenoo se calle ustée. Aliquip pecador no te digo trigo por no llamarte Rodrigor occaecat jarl.
+                </p>
+
+                <div *ngIf="mensaje" class="notification is-danger">
+                    <h6>{{mensaje}}</h6>
+                </div>
+
+                <div class="align-self-center">
+                    <label class="label mr-2">Acepto</label>
+                    <input class="mr-2" [(ngModel)]="acepta" type="checkbox" />
+                    <button class="button mr-2 is-warning" style="width:110px" routerLink="/usuarios/register">Volver</button>
+                    <button class="button mr-2 is-success" style="width:110px"  (click)="registrar()">Registrar</button>
+                </div>
+        </div>
+</div>
