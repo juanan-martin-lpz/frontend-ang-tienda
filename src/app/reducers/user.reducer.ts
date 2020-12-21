@@ -9,14 +9,14 @@ export interface State {
     usuario: Usuario;                  // El Usuario logueado
     nuevousuario: Usuario;             // El Usuario en creacion
     token: string;                     // Token de seguridad
-    errors: string[];                  // Errores en el proceso
+    errors: {};                  // Errores en el proceso
 }
 
 export const initialState: State = {
     usuario: null,
     nuevousuario: null,
     token: '',
-    errors: [],
+    errors: {},
 
 };
 
@@ -36,11 +36,21 @@ export function UsuariosReducer(state = initialState, action: UserActions): Stat
 
         case UserActionTypes.RegisterUser:
 
-            return { ...state, nuevousuario: action.payload.nuevousuario, errors: [] };
+            return { ...state, nuevousuario: action.payload.nuevousuario };
 
         case UserActionTypes.RegisterUserTermsAccepted:
 
-            return { ...state, nuevousuario: null, errors: [] };
+            return { ...state };
+
+        case UserActionTypes.RegisterUserSuccess:
+
+            return { ...state, nuevousuario: null, errors: {} };
+
+        case UserActionTypes.RegisterUserFailure:
+
+            console.log(action.payload.errors);
+
+            return { ...state, errors: action.payload.errors };
 
         default:
             return state;

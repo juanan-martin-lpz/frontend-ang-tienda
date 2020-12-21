@@ -38,7 +38,13 @@ export function reducer(state = initialState, action: CestaActions): State {
 
         case CestaActionTypes.LoadCestaSuccess:
 
-            return { ...state, articulos: action.payload.cesta, total_cesta: calcularImporteCesta(action.payload.cesta) };
+            let tcesta = 0;
+
+            if (action.payload.cesta.length > 0) {
+                tcesta = calcularImporteCesta(action.payload.cesta);
+            }
+
+            return { ...state, articulos: action.payload.cesta, total_cesta: tcesta };
 
         case CestaActionTypes.LoadCestaFailure:
             return state;
@@ -47,6 +53,8 @@ export function reducer(state = initialState, action: CestaActions): State {
 
             const c = clone(state.articulos);
             c.push(action.payload.producto);
+
+            console.log(c);
 
             return { ...state, articulos: c, total_cesta: calcularImporteCesta(c) };
 

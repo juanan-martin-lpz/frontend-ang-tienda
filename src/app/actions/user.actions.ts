@@ -47,7 +47,7 @@ export class RegisterUserTermsAccepted implements Action {
 
 export class RegisterUserFailure implements Action {
     readonly type = UserActionTypes.RegisterUserFailure;
-    constructor(public payload: { errors: string[] }) { }                   // payload: El mensaje de error
+    constructor(public payload: { errors: {} }) { }                   // payload: El mensaje de error
 }
 
 

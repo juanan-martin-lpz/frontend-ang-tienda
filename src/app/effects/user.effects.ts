@@ -35,7 +35,7 @@ export class UserEffects {
             /** An EMPTY observable only emits completion. Replace with your own observable API request */
             this.usuariosService.guardarUsuario(action.payload.nuevousuario).pipe(
                 map(({ status, usuario }) => new RegisterUserSuccess({ usuario })),
-                catchError((errors: string[]) => of(new RegisterUserFailure({ errors }))))
+                catchError(({ status, errors }) => of(new RegisterUserFailure({ errors }))))
         )
     );
 
