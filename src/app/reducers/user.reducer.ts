@@ -3,6 +3,8 @@ import { UserActions, UserActionTypes } from '../actions/user.actions';
 
 import { Usuario } from '../modelos/usuario.model';
 
+import { clone } from 'ramda';
+
 export const userFeatureKey = 'usuario';
 
 export interface State {
@@ -51,6 +53,18 @@ export function UsuariosReducer(state = initialState, action: UserActions): Stat
             console.log(action.payload.errors);
 
             return { ...state, errors: action.payload.errors };
+
+        case UserActionTypes.ClearErrors:
+
+            return { ...state, errors: null };
+
+        case UserActionTypes.PushError:
+
+            let newErrors = clone(state.errors);
+
+            newErrors[action.payload.property].push(action.payload.msg);
+
+            return { ...state, errors: newErrors };
 
         default:
             return state;

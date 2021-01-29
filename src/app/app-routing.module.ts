@@ -7,13 +7,15 @@ const routes: Routes = [
     {
         path: '',
         component: CatalogoComponent,
-        loadChildren: './tienda/tienda.module#TiendaModule'
+        // loadChildren: './tienda/tienda.module#TiendaModule'
+        loadChildren: () => import('./tienda/tienda.module').then(m => m.TiendaModule)
 
     },
     {
         path: 'usuarios',
         component: UsuariosComponent,
-        loadChildren: './usuarios/usuarios.module#UsuariosModule'
+        //loadChildren: './usuarios/usuarios.module#UsuariosModule'
+        loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule)
     },
 
 ];

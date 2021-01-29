@@ -6,7 +6,7 @@ import { EMPTY, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 
-import { LoginUserFailure, LoginUserSuccess, UserActionTypes, UserActions, RegisterUserTermsAccepted, RegisterUserSuccess, RegisterUserFailure } from '../actions/user.actions';
+import { LoginUserFailure, LoginUserSuccess, UserActionTypes, UserActions, RegisterUserTermsAccepted, RegisterUserSuccess, RegisterUserFailure, ClearError } from '../actions/user.actions';
 
 import { LoadCestaSuccess } from '../actions/cesta.actions';
 
@@ -20,7 +20,6 @@ export class UserEffects {
     loadUsers$ = this.actions$.pipe(
         ofType(UserActionTypes.LoginUser),
         concatMap((action) =>
-            /** An EMPTY observable only emits completion. Replace with your own observable API request */
             this.loginService.login(action.login).pipe(
                 map(({ usuario, token }) => new LoginUserSuccess({ usuario, token })),
                 catchError((errors: string[]) => of(new LoginUserFailure({ errors }))))
@@ -32,10 +31,10 @@ export class UserEffects {
     insertUsers$ = this.actions$.pipe(
         ofType(UserActionTypes.RegisterUserTermsAccepted),
         concatMap((action) =>
-            /** An EMPTY observable only emits completion. Replace with your own observable API request */
             this.usuariosService.guardarUsuario(action.payload.nuevousuario).pipe(
+                tap(r => new ClearError()),
                 map(({ status, usuario }) => new RegisterUserSuccess({ usuario })),
-                catchError(({ status, errors }) => of(new RegisterUserFailure({ errors }))))
+                catchError(({ error }) => of(new RegisterUserFailure({ errors: error.errors }))))
         )
     );
 

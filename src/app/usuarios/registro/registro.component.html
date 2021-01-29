@@ -62,9 +62,13 @@
                 </div>
             </div>
 
-            <div *ngIf="mensaje.length > 0" class="notification is-danger">
+            <div *ngIf="nerrors > 0" class="notification is-danger">
                 <button class="delete"></button>
-                <h6 *ngFor="let me of mensaje">{{me}}</h6>
+                <h6 *ngFor="let p of errors">
+                    <ul>
+                        <li>{{p}}</li>
+                    </ul>
+                </h6>
             </div>
         </div> <!--formulario-->
 

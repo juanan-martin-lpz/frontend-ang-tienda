@@ -19,11 +19,23 @@ export class AceptacionComponent implements OnInit {
 
     private usuario: Usuario;
 
+    private errors: {} = null;
+
     constructor(private router: Router, private store: Store<AppState>) {
 
         this.store.select('usuario').subscribe(({ nuevousuario }) => {
             this.usuario = nuevousuario;
         });
+
+        this.store.select('usuario').subscribe(({ errors }) => {
+            this.errors = errors;
+
+            if (this.errors != null && Object.keys(this.errors).length > 0) {
+                this.router.navigateByUrl('/usuarios/register');
+            }
+
+        });
+
     }
 
     ngOnInit(): void {
@@ -38,7 +50,12 @@ export class AceptacionComponent implements OnInit {
 
         this.store.dispatch(new RegisterUserTermsAccepted({ nuevousuario: this.usuario }));
 
-        this.router.navigateByUrl('/');
+        if (this.errors != null && Object.keys(this.errors).length > 0) {
+            this.router.navigateByUrl('/usuarios/register');
+        }
+        else {
+            this.router.navigateByUrl('/');
+        }
 
         // if (this.sesion.hasKey('usuario')) {
 

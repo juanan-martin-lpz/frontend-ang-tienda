@@ -10,6 +10,8 @@ export enum UserActionTypes {
     RegisterUserSuccess = '[User] Register User Success',
     RegisterUserFailure = '[User] Register User Failure',
     RegisterUserTermsAccepted = '[User] Register User Terms Aceptance',
+    ClearErrors = '[User] Clear Validation Errors',
+    PushError = '[User] Push Validation Error',
 
 
 }
@@ -50,6 +52,14 @@ export class RegisterUserFailure implements Action {
     constructor(public payload: { errors: {} }) { }                   // payload: El mensaje de error
 }
 
+export class ClearError implements Action {
+    readonly type = UserActionTypes.ClearErrors;
+}
+
+export class PushError implements Action {
+    readonly type = UserActionTypes.PushError;
+    constructor(public payload: { property: string, msg: string }) { }                    // payload: El usuario registrado
+}
 
 
 
@@ -61,5 +71,7 @@ export type UserActions =
     RegisterUser |
     RegisterUserSuccess |
     RegisterUserFailure |
-    RegisterUserTermsAccepted;
+    RegisterUserTermsAccepted |
+    ClearError |
+    PushError;
 

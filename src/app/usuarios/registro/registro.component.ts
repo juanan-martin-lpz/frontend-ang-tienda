@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers/index';
 
 import { NuevoUsuario } from '../../modelos/nuevousuario.model';
-import { RegisterUser } from 'src/app/actions/user.actions';
+import { ClearError, PushError, RegisterUser } from 'src/app/actions/user.actions';
 
 @Component({
     selector: 'app-registro',
@@ -17,7 +17,9 @@ export class RegistroComponent implements OnInit {
 
     public password: string;
 
-    public mensaje: string[];
+    private mensaje: {} = null;
+    public nerrors = 0;
+    public errors = [];
 
     constructor(private router: Router, private store: Store<AppState>) {
 
@@ -28,6 +30,13 @@ export class RegistroComponent implements OnInit {
 
         this.store.select('usuario').subscribe(({ errors }) => {
             this.mensaje = errors;
+            this.nerrors = this.mensaje != null ? Object.keys(this.mensaje).length : 0;
+
+            if (this.mensaje != null) {
+                for (const propiedad in this.mensaje) {
+                    this.errors.push(`${propiedad}: ${this.mensaje[propiedad]}`);
+                }
+            }
         });
 
         if (!this.usuario) {
@@ -55,15 +64,14 @@ export class RegistroComponent implements OnInit {
 
     public siguiente(): void {
 
-        this.mensaje = [];
 
         if (this.usuario.password == null || this.usuario.password.trim().length == 0) {
-            this.mensaje.push('El password es ser obligatorio');
+            this.store.dispatch(new PushError({ property: 'password', msg: 'El password es obligatorio' }));
             return;
         }
 
         if (this.usuario.password != this.password) {
-            this.mensaje.push('Los passwords no coinciden');
+            this.store.dispatch(new PushError({ property: 'password', msg: 'Los password no coinciden' }));
             return;
         }
 
