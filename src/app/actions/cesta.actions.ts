@@ -4,6 +4,7 @@ import { LineaPedido } from '../modelos/linea-pedido.model';
 import { ProductoVenta } from '../modelos/producto-venta.model';
 
 export enum CestaActionTypes {
+    InitCesta = '[Cesta] Inicializa Cesta',
     LoadCesta = '[Cesta] Load Cesta',
     LoadCestaSuccess = '[Cesta] Load Cesta Success',
     LoadCestaFailure = '[Cesta] Load Cesta Failure',
@@ -19,6 +20,10 @@ export enum CestaActionTypes {
     GuardarCestaSuccess = '[Cesta] Guardar Cesta Success',
     GuardarCestaFailure = '[Cesta] Guardar Cesta Failure',
 
+}
+
+export class InitCesta implements Action {
+    readonly type = CestaActionTypes.InitCesta;
 }
 
 export class LoadCesta implements Action {
@@ -77,6 +82,7 @@ export class GuardarCestaFailure implements Action {
 }
 
 export type CestaActions =
+    InitCesta |
     LoadCesta |
     LoadCestaSuccess |
     LoadCestaFailure |

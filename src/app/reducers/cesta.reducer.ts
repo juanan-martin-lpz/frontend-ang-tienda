@@ -31,6 +31,11 @@ function calcularImporteCesta(lineas: LineaPedido[]): number {
 export function reducer(state = initialState, action: CestaActions): State {
     switch (action.type) {
 
+
+        case CestaActionTypes.InitCesta:
+
+            return initialState;
+
         //Efecto
         case CestaActionTypes.LoadCesta:
 
