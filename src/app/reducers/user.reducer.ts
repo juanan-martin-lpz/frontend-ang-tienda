@@ -68,6 +68,9 @@ export function UsuariosReducer(state = initialState, action: UserActions): Stat
 
             return { ...state, errors: newErrors };
 
+        case UserActionTypes.LogoutUser:
+            return initialState;
+
         default:
             return state;
     }

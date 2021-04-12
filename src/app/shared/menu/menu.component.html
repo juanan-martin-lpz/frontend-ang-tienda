@@ -35,7 +35,7 @@
           <a *ngIf="usuario == null"  class="button is-light" routerLink="/usuarios/login">
               Entrar
           </a>
-          <a *ngIf="usuario != null"  class="button is-danger" routerLink="/usuarios/login">
+          <a *ngIf="usuario != null"  class="button is-danger" (click)="logout()">
               Logout
           </a>
         </div>

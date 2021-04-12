@@ -12,7 +12,7 @@ export enum UserActionTypes {
     RegisterUserTermsAccepted = '[User] Register User Terms Aceptance',
     ClearErrors = '[User] Clear Validation Errors',
     PushError = '[User] Push Validation Error',
-
+    LogoutUser = '[User] Logout User'
 
 }
 
@@ -61,6 +61,9 @@ export class PushError implements Action {
     constructor(public payload: { property: string, msg: string }) { }                    // payload: El usuario registrado
 }
 
+export class LogoutUser implements Action {
+    readonly type = UserActionTypes.LogoutUser;
+}
 
 
 
@@ -73,5 +76,6 @@ export type UserActions =
     RegisterUserFailure |
     RegisterUserTermsAccepted |
     ClearError |
-    PushError;
+    PushError |
+    LogoutUser;
 

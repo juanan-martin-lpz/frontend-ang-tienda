@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { LogoutUser } from 'src/app/actions/user.actions';
 import { LineaPedido } from 'src/app/modelos/linea-pedido.model';
 import { Usuario } from 'src/app/modelos/usuario.model';
 import { AppState } from 'src/app/reducers';
@@ -38,5 +39,10 @@ export class MenuComponent implements OnInit {
         else {
             this.router.navigateByUrl('usuarios/login');
         }
+    }
+
+    logout(): void {
+        this.store.dispatch(new LogoutUser());
+        this.router.navigateByUrl('/');
     }
 }
