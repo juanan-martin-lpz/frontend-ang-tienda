@@ -12,6 +12,7 @@ export interface State {
     nuevousuario: Usuario;             // El Usuario en creacion
     token: string;                     // Token de seguridad
     errors: {};                  // Errores en el proceso
+    error: object;
 }
 
 export const initialState: State = {
@@ -19,6 +20,7 @@ export const initialState: State = {
     nuevousuario: null,
     token: '',
     errors: {},
+    error: {}
 
 };
 
@@ -26,7 +28,7 @@ export function UsuariosReducer(state = initialState, action: UserActions): Stat
     switch (action.type) {
 
         case UserActionTypes.LoginUser:
-            return state;
+            return { ...state, error: {} };
 
         case UserActionTypes.LoginUserSuccess:
 
@@ -34,7 +36,7 @@ export function UsuariosReducer(state = initialState, action: UserActions): Stat
 
         case UserActionTypes.LoginUserFailure:
 
-            return { ...state, errors: action.payload.errors };
+            return { ...state, error: action.payload.error };
 
         case UserActionTypes.RegisterUser:
 
@@ -46,7 +48,7 @@ export function UsuariosReducer(state = initialState, action: UserActions): Stat
 
         case UserActionTypes.RegisterUserSuccess:
 
-            return { ...state, nuevousuario: null, errors: {} };
+            return { ...state, nuevousuario: null, error: null, errors: null };
 
         case UserActionTypes.RegisterUserFailure:
 

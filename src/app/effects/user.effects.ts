@@ -22,7 +22,7 @@ export class UserEffects {
         concatMap((action) =>
             this.loginService.login(action.login).pipe(
                 map(({ usuario, token }) => new LoginUserSuccess({ usuario, token })),
-                catchError((errors: string[]) => of(new LoginUserFailure({ errors }))))
+                catchError((error: object) => of(new LoginUserFailure({ error: error }))))
         )
     );
 

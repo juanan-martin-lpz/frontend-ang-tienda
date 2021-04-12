@@ -28,7 +28,7 @@ export class LoginUserSuccess implements Action {
 
 export class LoginUserFailure implements Action {
     readonly type = UserActionTypes.LoginUserFailure;
-    constructor(public payload: { errors: string[] }) { }                   // payload: El mensaje de error
+    constructor(public payload: { error: object }) { }                   // payload: El mensaje de error
 }
 
 

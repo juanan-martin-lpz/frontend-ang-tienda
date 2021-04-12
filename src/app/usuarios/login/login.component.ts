@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 import { LoadCestaSuccess } from '../../actions/cesta.actions';
 
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -20,8 +21,13 @@ export class LoginComponent implements OnInit {
         password: null
     };
 
+    public loginError: boolean = false;
+    public errorMessage: string = "";
+
     constructor(private store: Store<AppState>, private router: Router) {
 
+        // Subscripcion para cuando el login es correcto
+        // Despachamos la lectura de la cestas que pudiera tener el usuario
         this.store.select('usuario').subscribe(({ usuario, token }) => {
 
             if (token != '') {
@@ -31,6 +37,25 @@ export class LoginComponent implements OnInit {
 
         });
 
+        // Subscripcion para cuando el login es incorrecto.
+        // Limpiamos los datos de usuario porque en los segundos intentos NO actualiza el objeto desde la vista
+        this.store.select('usuario').subscribe(({ error }) => {
+
+            if (error["error"] != undefined) {
+
+                this.loginError = true;
+
+                let oE: any = error["error"];
+
+                this.errorMessage = oE["error"];
+
+                this.usuario = { login: null, password: null }
+
+            }
+
+        });
+
+
     }
 
     ngOnInit(): void {
@@ -38,7 +63,8 @@ export class LoginComponent implements OnInit {
 
     onLogin(): void {
 
-        console.log(this.usuario);
+        this.loginError = false;
+        this.errorMessage = '';
 
         this.store.dispatch(new LoginUser(this.usuario));
 
